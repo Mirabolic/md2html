@@ -1,0 +1,6 @@
+fonts/
+.venv/
+__pycache__/
+*.pyc
+/example.html
+/example.pdf
