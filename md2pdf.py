@@ -56,7 +56,8 @@ def to_pdf(md: str, pdf: str, paper: str, keep_html: bool, browser: str, theme: 
     if keep_html:
         html_path = os.path.splitext(pdf)[0] + ".html"
     else:
-        fd, html_path = tempfile.mkstemp(suffix=".html", prefix="md2pdf-")
+        # Beside the Markdown, so relative image paths resolve as they do for md2html.
+        fd, html_path = tempfile.mkstemp(suffix=".html", prefix=".md2pdf-", dir=os.path.dirname(os.path.abspath(md)))
         os.close(fd)
     try:
         md2html.render(md, html_path, extra_css=page_css, theme=theme)
